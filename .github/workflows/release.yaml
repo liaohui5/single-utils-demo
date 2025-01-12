@@ -10,6 +10,10 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 确保有写入权限
+      packages: write # 如果你也在发布包的话
+      pull-requests: write # 如果需要处理 PR 相关的事情
     steps:
       - name: download codes
         uses: actions/checkout@v4
