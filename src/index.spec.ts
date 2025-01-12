@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+	formatDate,
 	isCallable,
 	isFunction,
 	isNil,
@@ -74,5 +75,29 @@ describe("isFunction/isCallable", () => {
 	it("should return false if the value is not a function", () => {
 		expect(isFunction(null)).toBe(false);
 		expect(isCallable(undefined)).toBe(false);
+	});
+});
+
+describe("formatDate", () => {
+	it("should format date", () => {
+		const date = new Date();
+		date.setFullYear(2020);
+		date.setMonth(1);
+		date.setDate(2);
+		date.setHours(3);
+		date.setMinutes(4);
+		date.setSeconds(5);
+
+		expect(formatDate(date, "{y}-{m}-{d} {h}:{i}:{s}")).toBe("20-2-2 3:4:5");
+		expect(formatDate(date, "{y}年{m}月{d}日 {h}:{i}:{s}")).toBe(
+			"20年2月2日 3:4:5",
+		);
+
+		expect(formatDate(date, "{Y}-{M}-{D} {H}:{I}:{S}")).toBe(
+			"2020-02-02 03:04:05",
+		);
+		expect(formatDate(date, "{Y}年{M}月{D}日 {H}:{I}:{S}")).toBe(
+			"2020年02月02日 03:04:05",
+		);
 	});
 });

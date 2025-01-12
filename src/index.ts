@@ -71,3 +71,48 @@ export function isNode(): boolean {
 export function isBrowser(): boolean {
 	return window && getObjectTag(window) === "[object Window]";
 }
+
+/**
+ * 根据模板格式化字符串
+ * @param time - 要格式化的日期对象
+ * @param template - 格式化模板
+ * @returns 返回格式化后的时间字符串
+ */
+export function formatDate(date: Date, template: string): string {
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1;
+	const dates = date.getDate();
+	const hours = date.getHours();
+	const minutes = date.getMinutes();
+	const seconds = date.getSeconds();
+	const day = date.getDay() + 1;
+
+	const fillZero = (value: number): string => {
+		return value < 10 ? `0${value}` : String(value);
+	};
+
+	const templateMap = {
+		"{y}": year.toString().slice(-2),
+		"{Y}": year,
+		"{m}": month,
+		"{M}": fillZero(month),
+		"{d}": dates,
+		"{D}": fillZero(dates),
+		"{h}": hours,
+		"{H}": fillZero(hours),
+		"{i}": minutes,
+		"{I}": fillZero(minutes),
+		"{s}": seconds,
+		"{S}": fillZero(seconds),
+		"{w}": day,
+	};
+
+	let formated = template;
+	const keys = Object.keys(templateMap) as Array<keyof typeof templateMap>;
+	for (let i = 0; i < keys.length; i++) {
+		const key = keys[i];
+		const value = String(templateMap[key]);
+		formated = formated.replace(key, value);
+	}
+	return formated;
+}
