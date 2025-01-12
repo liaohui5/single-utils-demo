@@ -21,7 +21,7 @@ export function isUndefined(value: unknown): boolean {
  * @param {unknown} value
  * @returns {boolean} if value is null or unedefined, otherwise false
  */
-export function isNil(value: unknown) {
+export function isNil(value: unknown): boolean {
 	return value === null || value === undefined;
 }
 
@@ -33,3 +33,13 @@ export function isNil(value: unknown) {
 export function isObject(value: unknown): boolean {
 	return typeof value === "object" && null != value;
 }
+
+/**
+ * check if value is function
+ * @param value
+ * @returns {boolean} if value is function, otherwise false
+ */
+export function isFunction(value: unknown): boolean {
+	return typeof value === "function";
+}
+export const isCallable = isFunction;

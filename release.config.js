@@ -13,6 +13,7 @@ export default {
 				// 会根据提交记录的  分析出修改的版本
 				// 用于控制修改版本规则 major.minor.patch
 				// 推荐阅读: https://www.conventionalcommits.org/zh-hans/v1.0.0/
+				// 如果需要修改 major 版本, 只需要在 commit 类型后添加 ! 即可, 如: feat!: xxx
 				releaseRules: [
 					{ type: "fix", release: "patch" },
 					{ type: "refactor", release: "patch" },

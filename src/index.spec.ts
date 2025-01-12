@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { isNil, isNull, isObject, isUndefined } from "./index";
+import {
+	isCallable,
+	isFunction,
+	isNil,
+	isNull,
+	isObject,
+	isUndefined,
+} from "./index";
 
 describe("isNull", () => {
 	it("should return true if the value is null", () => {
@@ -48,5 +55,24 @@ describe("isObject", () => {
 		expect(isObject(null)).toBe(false);
 		expect(isObject(undefined)).toBe(false);
 		expect(isObject(Number.NaN)).toBe(false);
+	});
+});
+
+describe("isFunction/isCallable", () => {
+	it("should return true if the value is a function", () => {
+		const f1 = new Function();
+		const f2 = function some_func() {};
+		const f3 = () => {};
+		const f4 = Number;
+
+		expect(isFunction(f1)).toBe(true);
+		expect(isFunction(f2)).toBe(true);
+		expect(isCallable(f3)).toBe(true);
+		expect(isCallable(f4)).toBe(true);
+	});
+
+	it("should return false if the value is not a function", () => {
+		expect(isFunction(null)).toBe(false);
+		expect(isCallable(undefined)).toBe(false);
 	});
 });
