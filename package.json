@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "tsc --watch",
-		"build": "tsc",
+		"build": "rm -rf ./dist && tsc",
 		"test": "vitest",
 		"release": "semantic-release --debug",
 		"release-dry": "semantic-release --dry-run"
