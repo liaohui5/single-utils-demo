@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+	chunk,
 	formatDate,
 	isCallable,
 	isFunction,
@@ -99,5 +100,23 @@ describe("formatDate", () => {
 		expect(formatDate(date, "{Y}年{M}月{D}日 {H}:{I}:{S}")).toBe(
 			"2020年02月02日 03:04:05",
 		);
+	});
+});
+
+describe("chunk", () => {
+	it("should chunk an array", () => {
+		const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+		expect(chunk(array, 3)).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
+		expect(chunk(array, 20)).toEqual([[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]);
+	});
+
+	it("should throw an error when the size is not a positive number", () => {
+		// @ts-ignore
+		expect(() => chunk([], null)).toThrow();
+	});
+
+	it("should throw an error when the first argument is not an array", () => {
+		// @ts-ignore
+		expect(() => chunk(null)).toThrow();
 	});
 });

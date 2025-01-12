@@ -116,3 +116,32 @@ export function formatDate(date: Date, template: string): string {
 	}
 	return formated;
 }
+
+/**
+ * Paging Arrays
+ * @param {T[]} array - The array to be chunked.
+ * @param {number} [size=1] - The size of each chunk.
+ * @return {T[][]} The chunked array.
+ * @throws {TypeError}
+ */
+export function chunk<T>(array: T[], size: number = 1): number | T[][] {
+	if (!Array.isArray(array)) {
+		throw new TypeError("the paramter must be an array");
+	}
+	if (typeof size !== "number" || size <= 0) {
+		throw new TypeError("chunk size must be a positive number");
+	}
+
+	const chunkSize = Math.max(Math.floor(size), 1);
+	const len = array.length;
+	if (len <= chunkSize) {
+		return [array];
+	}
+
+	const pages = Math.ceil(len / chunkSize);
+	const items: T[][] = new Array(pages);
+	for (let i = 0; i < pages; i++) {
+		items[i] = array.slice(i * chunkSize, (i + 1) * chunkSize);
+	}
+	return items;
+}
