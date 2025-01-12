@@ -6,6 +6,13 @@
 export const isNull = (value: unknown): boolean => value === null;
 
 /**
+ * check if value is undefined
+ * @param {unknown} value
+ * @returns {boolean} if value is undefined, otherwise false
+ */
+export const isUndefined = (value: unknown): boolean => value === undefined;
+
+/**
  * check if value is undefined or null
  * @param {unknown} value
  * @returns {boolean} if value is null or unedefined, otherwise false

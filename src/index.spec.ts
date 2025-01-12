@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isNil, isNull } from "./index";
+import { isNil, isNull, isUndefined } from "./index";
 
 describe("isNull", () => {
 	it("should return true if the value is null", () => {
@@ -8,6 +8,16 @@ describe("isNull", () => {
 
 	it("should return false if the value is not null", () => {
 		expect(isNull(undefined)).toBe(false);
+	});
+});
+
+describe("isUndefined", () => {
+	it("should return true if the value is undefined", () => {
+		expect(isUndefined(undefined)).toBe(true);
+	});
+
+	it("should return false if the value is not undefined", () => {
+		expect(isUndefined(null)).toBe(false);
 	});
 });
 
