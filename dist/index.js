@@ -30,3 +30,77 @@ export function isNil(value) {
 export function isObject(value) {
     return typeof value === "object" && null != value;
 }
+/**
+ * check if value is function
+ * @param value
+ * @returns {boolean} if value is function, otherwise false
+ */
+export function isFunction(value) {
+    return typeof value === "function";
+}
+export const isCallable = isFunction;
+// get object prototype string tag
+const toTagString = Object.prototype.toString;
+/**
+ * get object prototype string tag
+ * @param value
+ * @returns {string}
+ */
+export function getObjectTag(value) {
+    return toTagString.call(value);
+}
+/**
+ * check if is node environment
+ * @returns {boolean} if is node environment, otherwise false
+ */
+export function isNode() {
+    return getObjectTag(globalThis) === "[object global]" && isUndefined(window);
+}
+/**
+ * check if is browser environment
+ * @returns {boolean} if is browser environment, otherwise false
+ */
+export function isBrowser() {
+    return window && getObjectTag(window) === "[object Window]";
+}
+/**
+ * 根据模板格式化字符串
+ * @param time - 要格式化的日期对象
+ * @param template - 格式化模板
+ * @returns 返回格式化后的时间字符串
+ */
+export function formatDate(date, template) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const dates = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const day = date.getDay() + 1;
+    const fillZero = (value) => {
+        return value < 10 ? `0${value}` : String(value);
+    };
+    const templateMap = {
+        "{y}": year.toString().slice(-2),
+        "{Y}": year,
+        "{m}": month,
+        "{M}": fillZero(month),
+        "{d}": dates,
+        "{D}": fillZero(dates),
+        "{h}": hours,
+        "{H}": fillZero(hours),
+        "{i}": minutes,
+        "{I}": fillZero(minutes),
+        "{s}": seconds,
+        "{S}": fillZero(seconds),
+        "{w}": day,
+    };
+    let formated = template;
+    const keys = Object.keys(templateMap);
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const value = String(templateMap[key]);
+        formated = formated.replace(key, value);
+    }
+    return formated;
+}
