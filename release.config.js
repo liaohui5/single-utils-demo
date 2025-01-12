@@ -37,8 +37,19 @@ export default {
 				// 如果设置为 true:
 				// 1.注意需要配置 github secrets
 				// 2.会自动修改 package.json 的 version 字段
+				// 3.如果开启了 2fa 安全验证码, 需要在生成 npm token 时选择 "Automation" 类型
 				npmPublish: true,
-				// pkgRoot: ".", // 发布到 npm 的目录
+			},
+		],
+
+		// 默认情况下 semantic-release 打包发布的版本与 commit 的版本号
+		// 一 致, 但是与 package.json 的版本号不一致, 因此需要配置
+		[
+			"@semantic-release/git",
+			{
+				assets: ["dist/**/*.js", "CHANGELOG.md", "package.json"],
+				message:
+					"ci(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
 			},
 		],
 
