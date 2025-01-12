@@ -43,3 +43,31 @@ export function isFunction(value: unknown): boolean {
 	return typeof value === "function";
 }
 export const isCallable = isFunction;
+
+// get object prototype string tag
+const toTagString = Object.prototype.toString;
+
+/**
+ * get object prototype string tag
+ * @param value
+ * @returns {string}
+ */
+export function getObjectTag(value: unknown): string {
+	return toTagString.call(value);
+}
+
+/**
+ * check if is node environment
+ * @returns {boolean} if is node environment, otherwise false
+ */
+export function isNode(): boolean {
+	return getObjectTag(globalThis) === "[object global]" && isUndefined(window);
+}
+
+/**
+ * check if is browser environment
+ * @returns {boolean} if is browser environment, otherwise false
+ */
+export function isBrowser(): boolean {
+	return window && getObjectTag(window) === "[object Window]";
+}
