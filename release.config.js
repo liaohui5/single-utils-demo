@@ -29,7 +29,7 @@ export default {
 		[
 			"@semantic-release/github",
 			{
-				assets: ["dist.tar.gz", "CHANGELOG.md"],
+				assets: ["dist", "CHANGELOG.md"],
 			},
 		],
 

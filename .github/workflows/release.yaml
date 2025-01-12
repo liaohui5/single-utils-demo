@@ -31,6 +31,9 @@ jobs:
       - name: run unit tests
         run: pnpm test
 
+      - name: build
+        run: pnpm build
+
       - name: run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
