@@ -38,7 +38,7 @@ export default {
 				// 1.注意需要配置 github secrets
 				// 2.会自动修改 package.json 的 version 字段
 				npmPublish: true,
-				tarballDir: "dist",
+				// pkgRoot: ".", // 发布到 npm 的目录
 			},
 		],
 
