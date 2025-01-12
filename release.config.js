@@ -13,9 +13,9 @@ export default {
 		// https://github.com/semantic-release/release-notes-generator
 		"@semantic-release/release-notes-generator",
 
-        // 如果需要给插件传入参数, 可以使用数组形式, 
-        // 数组第一个元素是插件名称, 后面是插件参数
-        // 默认的参数请查看对应插件仓库的 README.md
+		// 如果需要给插件传入参数, 可以使用数组形式,
+		// 数组第一个元素是插件名称, 后面是插件参数
+		// 默认的参数请查看对应插件仓库的 README.md
 		// https://github.com/semantic-release/npm
 		[
 			"@semantic-release/npm",
@@ -29,7 +29,7 @@ export default {
 		[
 			"@semantic-release/github",
 			{
-				assets: "dist/*.tgz",
+				assets: ["dist.tar.gz", "CHANGELOG.md"],
 			},
 		],
 
