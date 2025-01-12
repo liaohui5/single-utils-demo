@@ -20,3 +20,12 @@ export const isUndefined = (value: unknown): boolean => value === undefined;
 export const isNil = (value: unknown): boolean => {
 	return value === null || value === undefined;
 };
+
+/**
+ * check if value is object
+ * @param {unknown} value
+ * @returns {boolean} if value is object, otherwise false
+ */
+export const isObject = (value: unknown): boolean => {
+	return typeof value === "object" && value !== null;
+};
