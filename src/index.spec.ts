@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isNull } from "./index";
+import { isNil, isNull } from "./index";
 
 describe("isNull", () => {
 	it("should return true if the value is null", () => {
@@ -8,5 +8,19 @@ describe("isNull", () => {
 
 	it("should return false if the value is not null", () => {
 		expect(isNull(undefined)).toBe(false);
+	});
+});
+
+describe("isNil", () => {
+	it("should return true if the value is null or undefined", () => {
+		expect(isNil(null)).toBe(true);
+		expect(isNil(undefined)).toBe(true);
+	});
+
+	it("should return true if the value is not null or undefined", () => {
+		expect(isNil(Number.NaN)).toBe(false);
+		expect(isNil(false)).toBe(false);
+		expect(isNil(0)).toBe(false);
+		expect(isNil("")).toBe(false);
 	});
 });
