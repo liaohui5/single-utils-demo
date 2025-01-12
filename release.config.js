@@ -63,7 +63,10 @@ export default {
 		[
 			"@semantic-release/git",
 			{
-				assets: ["dist/**/*.js", "CHANGELOG.md", "package.json"],
+				// 这个是发布到 tags 页面的额外资源, 比如一些软件会把构建结果的包放在这里
+				// 比如: https://github.com/clash-verge-rev/clash-verge-rev/releases/tag/v2.0.2
+				// 除了源码(tar.gz)压缩包之外, 还增加了很多构建好的软件, 如: Clash.Verge_2.0.2_x64-setup.exe
+				assets: ["dist"],
 				message:
 					"ci(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
 			},
