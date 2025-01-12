@@ -16,7 +16,7 @@
 	"license": "ISC",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:liaohui5/single-utils-demo.git"
+		"url": "git+https://github.com/liaohui5/single-utils-demo"
 	},
 	"devDependencies": {
 		"@semantic-release/changelog": "^6.0.3",
