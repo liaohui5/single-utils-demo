@@ -7,7 +7,21 @@ export default {
 		// 1.安装(pnpm i -D semantic-release) 后, 默认会有这4个插件
 		// 分析提交记录的 conventional-changelog, 用于生成变更日志
 		// https://github.com/semantic-release/commit-analyzer
-		"@semantic-release/commit-analyzer",
+		[
+			"@semantic-release/commit-analyzer",
+			{
+				// 会根据提交记录的  分析出修改的版本
+				// 用于控制修改版本规则 major.minor.patch
+				// 推荐阅读: https://www.conventionalcommits.org/zh-hans/v1.0.0/
+				releaseRules: [
+					{ type: "fix", release: "patch" },
+					{ type: "refactor", release: "patch" },
+					{ type: "perf", release: "patch" },
+					{ type: "chore", release: "patch" },
+					{ type: "feat", release: "minor" },
+				],
+			},
+		],
 
 		// 2.使用 conventional-changelog 生成变更日志内容
 		// https://github.com/semantic-release/release-notes-generator
