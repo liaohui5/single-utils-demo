@@ -73,10 +73,10 @@ export function isBrowser(): boolean {
 }
 
 /**
- * 根据模板格式化字符串
- * @param time - 要格式化的日期对象
- * @param template - 格式化模板
- * @returns 返回格式化后的时间字符串
+ * format date by template string
+ * @param {Date} date
+ * @param {string} template
+ * @returns {string}
  */
 export function formatDate(date: Date, template: string): string {
 	const year = date.getFullYear();
