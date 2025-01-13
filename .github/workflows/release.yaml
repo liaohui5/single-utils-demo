@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          registry-url: ${{ secrets.MYNPM_URL }} # 注意配置这个变量
 
       - name: install dependencies
         run: pnpm install
@@ -41,5 +41,5 @@ jobs:
       - name: run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.MYNPM_TOKEN }} # 注意这个变量不再是 NPM_TOKEN 了而是 MYNPM_TOKEN
         run: pnpm run release
