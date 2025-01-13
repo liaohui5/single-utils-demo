@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: ${{ secrets.MYNPM_URL }} # 注意配置这个变量
 
       - name: install dependencies
         run: pnpm install
